@@ -43,6 +43,26 @@ var COPY = {
 };
 
 // ---------------------------------------------------------------------------
+// Theme (dark / light)
+// ---------------------------------------------------------------------------
+var currentTheme = (function () {
+  var saved = localStorage.getItem('stonetracker-theme');
+  if (saved) return saved;
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+})();
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  var btn = document.getElementById('theme-btn');
+  if (btn) {
+    btn.textContent = theme === 'dark' ? '\u2600' : '\u263E'; // ☀ in dark, ☾ in light
+    btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  localStorage.setItem('stonetracker-theme', theme);
+  currentTheme = theme;
+}
+
+// ---------------------------------------------------------------------------
 // Language switcher
 // ---------------------------------------------------------------------------
 var currentLang = navigator.language.startsWith('nl') ? 'nl' : 'en';
@@ -72,8 +92,12 @@ function applyLanguage(lang) {
 // Form handler
 // ---------------------------------------------------------------------------
 (function () {
+  applyTheme(currentTheme);
   applyLanguage(currentLang);
 
+  document.getElementById('theme-btn').addEventListener('click', function () {
+    applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  });
   document.getElementById('lang-en').addEventListener('click', function () { applyLanguage('en'); });
   document.getElementById('lang-nl').addEventListener('click', function () { applyLanguage('nl'); });
 

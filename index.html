@@ -31,10 +31,13 @@
 
     <header>
       <a href="https://lumiotech.github.io/stonetracker-site/" class="logo">StoneTracker<span class="logo-dot" aria-hidden="true"></span></a>
-      <div class="lang-selector" role="group" aria-label="Language">
-        <button class="lang-btn" id="lang-en" data-lang="en">EN</button>
-        <span aria-hidden="true" style="color:#333">·</span>
-        <button class="lang-btn" id="lang-nl" data-lang="nl">NL</button>
+      <div class="header-actions">
+        <button class="theme-btn" id="theme-btn" aria-label="Toggle colour theme">☀</button>
+        <div class="lang-selector" role="group" aria-label="Language">
+          <button class="lang-btn" id="lang-en" data-lang="en">EN</button>
+          <span aria-hidden="true" style="color:var(--border)">·</span>
+          <button class="lang-btn" id="lang-nl" data-lang="nl">NL</button>
+        </div>
       </div>
     </header>
 
@@ -83,24 +86,24 @@
           </defs>
 
           <!-- Horizontal grid lines -->
-          <line x1="62" y1="144" x2="528" y2="144" stroke="#222" stroke-width="1"/>
-          <line x1="62" y1="117" x2="528" y2="117" stroke="#222" stroke-width="1"/>
-          <line x1="62" y1="91"  x2="528" y2="91"  stroke="#222" stroke-width="1"/>
-          <line x1="62" y1="64"  x2="528" y2="64"  stroke="#222" stroke-width="1"/>
+          <line class="chart-grid-line" x1="62" y1="144" x2="528" y2="144" stroke-width="1"/>
+          <line class="chart-grid-line" x1="62" y1="117" x2="528" y2="117" stroke-width="1"/>
+          <line class="chart-grid-line" x1="62" y1="91"  x2="528" y2="91"  stroke-width="1"/>
+          <line class="chart-grid-line" x1="62" y1="64"  x2="528" y2="64"  stroke-width="1"/>
           <!-- X-axis baseline -->
-          <line x1="62" y1="184" x2="528" y2="184" stroke="#222" stroke-width="1"/>
+          <line class="chart-grid-line" x1="62" y1="184" x2="528" y2="184" stroke-width="1"/>
 
           <!-- Y-axis labels (€420K … €480K) -->
-          <text x="56" y="148" text-anchor="end" fill="#555" font-size="10" font-family="inherit">€420K</text>
-          <text x="56" y="121" text-anchor="end" fill="#555" font-size="10" font-family="inherit">€440K</text>
-          <text x="56" y="95"  text-anchor="end" fill="#555" font-size="10" font-family="inherit">€460K</text>
-          <text x="56" y="68"  text-anchor="end" fill="#555" font-size="10" font-family="inherit">€480K</text>
+          <text class="chart-axis-text" x="56" y="148" text-anchor="end" font-size="10" font-family="inherit">€420K</text>
+          <text class="chart-axis-text" x="56" y="121" text-anchor="end" font-size="10" font-family="inherit">€440K</text>
+          <text class="chart-axis-text" x="56" y="95"  text-anchor="end" font-size="10" font-family="inherit">€460K</text>
+          <text class="chart-axis-text" x="56" y="68"  text-anchor="end" font-size="10" font-family="inherit">€480K</text>
 
           <!-- X-axis labels -->
-          <text x="62"  y="200" text-anchor="middle" fill="#555" font-size="10" font-family="inherit">Jan</text>
-          <text x="217" y="200" text-anchor="middle" fill="#555" font-size="10" font-family="inherit">May</text>
-          <text x="373" y="200" text-anchor="middle" fill="#555" font-size="10" font-family="inherit">Sep</text>
-          <text x="528" y="200" text-anchor="middle" fill="#555" font-size="10" font-family="inherit">Jan</text>
+          <text class="chart-axis-text" x="62"  y="200" text-anchor="middle" font-size="10" font-family="inherit">Jan</text>
+          <text class="chart-axis-text" x="217" y="200" text-anchor="middle" font-size="10" font-family="inherit">May</text>
+          <text class="chart-axis-text" x="373" y="200" text-anchor="middle" font-size="10" font-family="inherit">Sep</text>
+          <text class="chart-axis-text" x="528" y="200" text-anchor="middle" font-size="10" font-family="inherit">Jan</text>
 
           <!-- Area fill (fades in after line draws) -->
           <path class="chart-area"
@@ -120,19 +123,18 @@
                 text-anchor="middle" fill="#ef4444" font-size="11" font-weight="600" font-family="inherit">↓ €45K</text>
 
           <!-- Peak dot + label -->
-          <circle class="chart-dot" cx="373" cy="37" r="4.5"
-                  fill="#0a0a0a" stroke="#ededed" stroke-width="2"/>
-          <text class="chart-dot" x="373" y="25"
-                text-anchor="middle" fill="#ededed" font-size="11" font-weight="600" font-family="inherit">€500K</text>
+          <circle class="chart-dot chart-peak-dot" cx="373" cy="37" r="4.5" stroke-width="2"/>
+          <text class="chart-dot chart-peak-text" x="373" y="25"
+                text-anchor="middle" font-size="11" font-weight="600" font-family="inherit">€500K</text>
 
           <!-- Today dot + label -->
           <circle class="chart-dot" cx="528" cy="97" r="4.5"
                   fill="#4f8ef7" stroke="#4f8ef7" stroke-width="2"/>
-          <text class="chart-dot" x="528" y="113"
-                text-anchor="middle" fill="#888" font-size="11" font-family="inherit">€455K</text>
+          <text class="chart-dot chart-today-text" x="528" y="113"
+                text-anchor="middle" font-size="11" font-family="inherit">€455K</text>
 
           <!-- Chart caption -->
-          <text x="62" y="215" fill="#444" font-size="9" font-family="inherit">example listing price · Amsterdam</text>
+          <text class="chart-caption" x="62" y="215" font-size="9" font-family="inherit">example listing price · Amsterdam</text>
         </svg>
       </div>
 
