@@ -36,26 +36,7 @@
     <main>
       <span class="eyebrow">Amsterdam &amp; Haarlem · Early access</span>
 
-      <h1>Know when Dutch house prices actually change.</h1>
-
-      <p class="subhead">
-        We track listing prices for rentals and homes for sale across Amsterdam
-        and Haarlem — expanding across the Randstad. See which listings are
-        genuinely new, which have been quietly relisted, and which prices are
-        on their way down.
-      </p>
-
-      <ul class="features">
-        <li>
-          <strong>Full price history</strong> — see every price change on a listing from day one, not just what it's listed at today.
-        </li>
-        <li>
-          <strong>Relist detection</strong> — spot listings that were taken off the market and put back, sometimes at a "new" price.
-        </li>
-        <li>
-          <strong>Daily tracking</strong> — we check listings every day so you know the moment a price drops or a new listing goes live.
-        </li>
-      </ul>
+      <h1>Stop overpaying. See the drop before anyone else.</h1>
 
       <form id="waitlist-form" novalidate>
         <label for="email-input">Email address</label>
@@ -70,13 +51,9 @@
             inputmode="email"
             required
           />
-          <button type="submit" id="submit-btn">Join the waitlist</button>
+          <button type="submit" id="submit-btn">Get early access</button>
         </div>
 
-        <!--
-          aria-live="polite" means the success/error message is announced
-          to screen readers without interrupting what they're currently reading.
-        -->
         <p
           id="form-status"
           class="form-status"
@@ -85,6 +62,92 @@
           aria-atomic="true"
         ></p>
       </form>
+
+      <!-- Price chart: Jan–Jan, €400K → €500K peak → €455K today -->
+      <div class="chart-wrapper">
+        <svg class="price-chart" viewBox="0 0 560 220"
+             role="img"
+             aria-label="Line chart showing a Dutch house listing price rising from €400K to a peak of €500K, then dropping to €455K">
+          <title>Example listing price over 12 months — Amsterdam</title>
+
+          <defs>
+            <linearGradient id="area-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="#4f8ef7" stop-opacity="0.12"/>
+              <stop offset="100%" stop-color="#4f8ef7" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Horizontal grid lines -->
+          <line x1="62" y1="144" x2="528" y2="144" stroke="#222" stroke-width="1"/>
+          <line x1="62" y1="117" x2="528" y2="117" stroke="#222" stroke-width="1"/>
+          <line x1="62" y1="91"  x2="528" y2="91"  stroke="#222" stroke-width="1"/>
+          <line x1="62" y1="64"  x2="528" y2="64"  stroke="#222" stroke-width="1"/>
+          <!-- X-axis baseline -->
+          <line x1="62" y1="184" x2="528" y2="184" stroke="#222" stroke-width="1"/>
+
+          <!-- Y-axis labels (€420K … €480K) -->
+          <text x="56" y="148" text-anchor="end" fill="#555" font-size="10" font-family="inherit">€420K</text>
+          <text x="56" y="121" text-anchor="end" fill="#555" font-size="10" font-family="inherit">€440K</text>
+          <text x="56" y="95"  text-anchor="end" fill="#555" font-size="10" font-family="inherit">€460K</text>
+          <text x="56" y="68"  text-anchor="end" fill="#555" font-size="10" font-family="inherit">€480K</text>
+
+          <!-- X-axis labels -->
+          <text x="62"  y="200" text-anchor="middle" fill="#555" font-size="10" font-family="inherit">Jan</text>
+          <text x="217" y="200" text-anchor="middle" fill="#555" font-size="10" font-family="inherit">May</text>
+          <text x="373" y="200" text-anchor="middle" fill="#555" font-size="10" font-family="inherit">Sep</text>
+          <text x="528" y="200" text-anchor="middle" fill="#555" font-size="10" font-family="inherit">Jan</text>
+
+          <!-- Area fill (fades in after line draws) -->
+          <path class="chart-area"
+            d="M 62,171 C 90,163 115,153 139,147 C 163,141 195,126 217,120 C 239,114 270,99 295,93 C 320,87 356,37 373,37 C 390,37 426,62 450,67 C 474,72 504,89 528,97 L 528,184 L 62,184 Z"
+            fill="url(#area-grad)"/>
+
+          <!-- Price line (animated draw) -->
+          <path class="chart-line"
+            d="M 62,171 C 90,163 115,153 139,147 C 163,141 195,126 217,120 C 239,114 270,99 295,93 C 320,87 356,37 373,37 C 390,37 426,62 450,67 C 474,72 504,89 528,97"/>
+
+          <!-- Dashed line at peak level — shows how far price has fallen -->
+          <line class="chart-annotation" x1="373" y1="37" x2="528" y2="37"
+                stroke="#ef4444" stroke-width="1" stroke-dasharray="4 3" opacity="0.45"/>
+
+          <!-- Drop label -->
+          <text class="chart-annotation" x="492" y="67"
+                text-anchor="middle" fill="#ef4444" font-size="11" font-weight="600" font-family="inherit">↓ €45K</text>
+
+          <!-- Peak dot + label -->
+          <circle class="chart-dot" cx="373" cy="37" r="4.5"
+                  fill="#0a0a0a" stroke="#ededed" stroke-width="2"/>
+          <text class="chart-dot" x="373" y="25"
+                text-anchor="middle" fill="#ededed" font-size="11" font-weight="600" font-family="inherit">€500K</text>
+
+          <!-- Today dot + label -->
+          <circle class="chart-dot" cx="528" cy="97" r="4.5"
+                  fill="#4f8ef7" stroke="#4f8ef7" stroke-width="2"/>
+          <text class="chart-dot" x="528" y="113"
+                text-anchor="middle" fill="#888" font-size="11" font-family="inherit">€455K</text>
+
+          <!-- Chart caption -->
+          <text x="62" y="215" fill="#444" font-size="9" font-family="inherit">example listing price · Amsterdam</text>
+        </svg>
+      </div>
+
+      <p class="subhead">
+        We track listing prices for rentals and homes for sale across Amsterdam
+        and Haarlem — expanding across the Randstad. Know if a listing dropped
+        €20K last month before you make an offer.
+      </p>
+
+      <ul class="features">
+        <li>
+          <strong>Full price history</strong> — know exactly when a price dropped and by how much, before you walk through the door.
+        </li>
+        <li>
+          <strong>Relist detection</strong> — see listings that were pulled and put back, sometimes at a suspiciously "new" price.
+        </li>
+        <li>
+          <strong>Daily tracking</strong> — get alerted the moment a price drops or a listing you're watching comes back.
+        </li>
+      </ul>
     </main>
 
     <footer>
