@@ -31,6 +31,11 @@
 
     <header>
       <a href="https://lumiotech.github.io/stonetracker-site/" class="logo">StoneTracker<span class="logo-dot" aria-hidden="true"></span></a>
+      <div class="lang-selector" role="group" aria-label="Language">
+        <button class="lang-btn" id="lang-en" data-lang="en">EN</button>
+        <span aria-hidden="true" style="color:#333">·</span>
+        <button class="lang-btn" id="lang-nl" data-lang="nl">NL</button>
+      </div>
     </header>
 
     <main>
@@ -138,20 +143,20 @@
       </p>
 
       <ul class="features">
-        <li>
+        <li id="feat-1">
           <strong>Full price history</strong> — know exactly when a price dropped and by how much, before you walk through the door.
         </li>
-        <li>
+        <li id="feat-2">
           <strong>Relist detection</strong> — see listings that were pulled and put back, sometimes at a suspiciously "new" price.
         </li>
-        <li>
+        <li id="feat-3">
           <strong>Daily tracking</strong> — get alerted the moment a price drops or a listing you're watching comes back.
         </li>
       </ul>
     </main>
 
     <footer>
-      <p>Built in Amsterdam. Not affiliated with Funda or Pararius.</p>
+      <p id="footer-tagline">Built in Amsterdam. Not affiliated with Funda or Pararius.</p>
       <p>© <span id="year"></span> StoneTracker</p>
     </footer>
 
