@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+    Headline alternatives — pick one and replace the <h1> text below:
+    1. "Know when Dutch house prices actually change."       (current)
+    2. "Stop guessing. Track real Dutch listing prices."
+    3. "Price drops, relistings, and stale listings — finally visible."
+  -->
+  <title>StoneTracker — Dutch Housing Price Tracker</title>
+  <meta name="description"
+        content="Track listing prices for rentals and homes for sale in Amsterdam and Haarlem. See which prices are dropping, which listings are new, and which are quietly relisted." />
+
+  <!-- Open Graph (for link previews) -->
+  <meta property="og:title"       content="StoneTracker" />
+  <meta property="og:description" content="Know when Dutch house prices actually change." />
+  <meta property="og:type"        content="website" />
+  <!--
+    When you have a custom domain, add:
+    <meta property="og:url" content="https://yourdomain.com" />
+    <meta property="og:image" content="https://yourdomain.com/og-image.png" />
+  -->
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <a href="/" class="logo">StoneTracker<span class="logo-dot" aria-hidden="true"></span></a>
+    </header>
+
+    <main>
+      <span class="eyebrow">Amsterdam &amp; Haarlem · Early access</span>
+
+      <h1>Know when Dutch house prices actually change.</h1>
+
+      <p class="subhead">
+        We track listing prices for rentals and homes for sale across Amsterdam
+        and Haarlem — expanding across the Randstad. See which listings are
+        genuinely new, which have been quietly relisted, and which prices are
+        on their way down.
+      </p>
+
+      <ul class="features">
+        <li>
+          <strong>Full price history</strong> — see every price change on a listing from day one, not just what it's listed at today.
+        </li>
+        <li>
+          <strong>Relist detection</strong> — spot listings that were taken off the market and put back, sometimes at a "new" price.
+        </li>
+        <li>
+          <strong>Daily tracking</strong> — we check listings every day so you know the moment a price drops or a new listing goes live.
+        </li>
+      </ul>
+
+      <form id="waitlist-form" novalidate>
+        <label for="email-input">Email address</label>
+
+        <div class="waitlist-form">
+          <input
+            type="email"
+            id="email-input"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            inputmode="email"
+            required
+          />
+          <button type="submit" id="submit-btn">Join the waitlist</button>
+        </div>
+
+        <!--
+          aria-live="polite" means the success/error message is announced
+          to screen readers without interrupting what they're currently reading.
+        -->
+        <p
+          id="form-status"
+          class="form-status"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        ></p>
+      </form>
+    </main>
+
+    <footer>
+      <p>Built in Haarlem. Not affiliated with Funda or Pararius.</p>
+      <p>© <span id="year"></span> StoneTracker</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Keep the copyright year current without a build step.
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
