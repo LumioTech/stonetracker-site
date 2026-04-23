@@ -26,16 +26,17 @@ var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxgvPWqMrbaVXlMCy
       return;
     }
 
-    setStatus('', '');
+    // Optimistic UI: show success immediately after client-side validation.
+    // The POST fires in the background — Apps Script cold-start latency is
+    // invisible to the user this way.
+    setStatus('success', "You're on the list. We'll email you when we launch.");
+    form.reset();
     button.disabled = true;
-    button.textContent = 'Joining…';
 
     var payload = JSON.stringify({
       email:      email,
       user_agent: navigator.userAgent,
       referrer:   document.referrer,
-      // We hash the IP server-side from the request headers.
-      // ip_hash is sent as empty string here; Apps Script computes it.
       ip_hash:    '',
     });
 
@@ -51,23 +52,15 @@ var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxgvPWqMrbaVXlMCy
         return res.json();
       })
       .then(function (data) {
-        if (data.ok) {
-          setStatus('success', "You're on the list. We'll email you when we launch.");
-          form.reset();
-        } else {
-          throw new Error(data.error || 'Unknown error');
-        }
+        if (!data.ok) throw new Error(data.error || 'ok:false');
       })
       .catch(function (err) {
-        console.error('Waitlist error:', err);
-        setStatus(
-          'error',
-          'Something went wrong. Please try again or email us directly.'
-        );
+        // Background POST failed — user already saw success, don't change that.
+        // Check the Apps Script Executions log for details.
+        console.error('[StoneTracker] Waitlist submission failed for', email, '—', err.message);
       })
       .finally(function () {
         button.disabled = false;
-        button.textContent = 'Join the waitlist';
       });
   });
 
