@@ -171,7 +171,7 @@ header {
 main {
   width: 100%;
   max-width: var(--max-w);
-  padding: 5rem 0 4rem;
+  padding: clamp(3.5rem, 8vw, 5rem) 0 4rem;
   flex: 1;
 }
 
@@ -274,7 +274,7 @@ h1 {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--text);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-family: var(--font);
   outline: none;
   transition: border-color 0.15s;
@@ -406,16 +406,14 @@ footer p {
    Responsive
    ----------------------------------------------------------------------- */
 
-@media (max-width: 480px) {
-  main {
-    padding-top: 3.5rem;
-  }
-
+@media (max-width: 60ch) {
   .waitlist-form {
     flex-direction: column;
   }
 
+  .waitlist-form input[type="email"],
   .waitlist-form button {
+    flex: none;
     width: 100%;
   }
 }
